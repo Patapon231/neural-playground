@@ -1,0 +1,41 @@
+:root {
+  /* Основная ретро-фосфорная цветовая палитра (CRT 1980–1990) */
+  --bg-main: #080B08;
+  --bg-panel: #101610;
+  --bg-panel-alt: #151D16;
+  --bg-input: #0B100C;
+  --bg-hover: #1A261C;
+  --bg-active: #1D2E21;
+
+  --green-primary: #39FF78;
+  --green-secondary: #8CBF98;
+  --green-dim: #1E4429;
+  --green-dark-neg: #18291D;
+
+  --border-color: #285B37;
+  --border-subtle: #1B3B25;
+  --border-bright: #39FF78;
+
+  --text-main: #D0E8D4;
+  --text-muted: #718575;
+  --text-bright: #39FF78;
+  --text-inverse: #080B08;
+
+  /* Сдержанные статусные оттенки без синих/фиолетовых цветов */
+  --status-warn: #C8D96F;
+  --status-error: #E06C65;
+
+  /* Свечение люминофора */
+  --glow-xs: 0 0 4px rgba(57, 255, 120, 0.22);
+  --glow-sm: 0 0 8px rgba(57, 255, 120, 0.28);
+  --glow-md: 0 0 14px rgba(57, 255, 120, 0.35);
+  --glow-box: inset 0 0 18px rgba(57, 255, 120, 0.04);
+
+  /* Типографика */
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', Consolas, 'Courier New', monospace;
+  --font-tech: 'IBM Plex Mono', 'JetBrains Mono', Consolas, monospace;
+
+  /* Геометрия */
+  --header-height: 58px;
+  --sidebar-width: 256px;
+}

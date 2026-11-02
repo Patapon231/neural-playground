@@ -1,0 +1,406 @@
+@import './variables.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  selection-background-color: var(--green-primary);
+}
+
+::selection {
+  background: var(--green-primary);
+  color: var(--text-inverse);
+}
+
+/* Кастомные технические полосы прокрутки */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+  border-left: 1px solid var(--border-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-secondary);
+}
+
+/* Эффект CRT-монитора: тонкие линии сканирования и мягкая виньетка */
+.crt-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-main);
+  animation: crt-subtle-flicker 9s infinite alternate;
+}
+
+.crt-overlay-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.22) 50%
+    ),
+    radial-gradient(
+      circle at center,
+      transparent 68%,
+      rgba(4, 7, 4, 0.42) 100%
+    );
+  background-size: 100% 3px, 100% 100%;
+  opacity: 0.55;
+}
+
+.crt-disabled .crt-overlay-scanlines {
+  display: none;
+}
+
+.crt-disabled.crt-root {
+  animation: none;
+}
+
+@keyframes crt-subtle-flicker {
+  0% {
+    opacity: 0.996;
+  }
+  48% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.989;
+  }
+  52% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.997;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-root {
+    animation: none;
+  }
+}
+
+/* Мигающий курсор терминала */
+.blinking-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background-color: var(--green-primary);
+  vertical-align: middle;
+  margin-left: 5px;
+  box-shadow: var(--glow-xs);
+  animation: cursor-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Свечение фосфорного текста (умеренное, без потери читаемости) */
+.phosphor-text {
+  color: var(--green-primary);
+  text-shadow: var(--glow-xs);
+}
+
+/* Технические панели с угловыми засечками */
+.tech-panel {
+  position: relative;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--glow-box);
+}
+
+.tech-panel::before,
+.tech-panel::after {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+}
+
+.tech-panel::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--green-primary);
+  border-left: 2px solid var(--green-primary);
+}
+
+.tech-panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--green-primary);
+  border-right: 2px solid var(--green-primary);
+}
+
+.tech-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  background-color: var(--bg-panel-alt);
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-tech);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-secondary);
+}
+
+.tech-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-main);
+}
+
+.tech-panel-code {
+  color: var(--green-primary);
+  font-weight: 700;
+}
+
+/* Прямоугольные ретро-кнопки */
+.retro-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 14px;
+  background-color: var(--bg-panel-alt);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    color 0.12s ease,
+    box-shadow 0.12s ease;
+  user-select: none;
+}
+
+.retro-btn:hover:not(:disabled) {
+  background-color: var(--bg-hover);
+  border-color: var(--green-primary);
+  color: var(--green-primary);
+  box-shadow: var(--glow-xs);
+}
+
+.retro-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.retro-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.retro-btn-primary {
+  background-color: rgba(57, 255, 120, 0.12);
+  border-color: var(--green-primary);
+  color: var(--green-primary);
+  text-shadow: var(--glow-xs);
+}
+
+.retro-btn-primary:hover:not(:disabled) {
+  background-color: var(--green-primary);
+  color: var(--text-inverse);
+  text-shadow: none;
+  box-shadow: var(--glow-sm);
+}
+
+.retro-btn-danger {
+  background-color: rgba(224, 108, 101, 0.1);
+  border-color: var(--status-error);
+  color: var(--status-error);
+}
+
+.retro-btn-danger:hover:not(:disabled) {
+  background-color: var(--status-error);
+  border-color: var(--status-error);
+  color: var(--text-inverse);
+  box-shadow: 0 0 8px rgba(224, 108, 101, 0.35);
+}
+
+.retro-btn-sm {
+  padding: 4px 9px;
+  font-size: 11px;
+}
+
+/* Поля ввода и селекты */
+.retro-input,
+.retro-select {
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.retro-input:focus,
+.retro-select:focus {
+  border-color: var(--green-primary);
+  box-shadow: var(--glow-xs);
+}
+
+.retro-select option {
+  background-color: var(--bg-panel);
+  color: var(--text-main);
+}
+
+/* Ползунок (range) в стиле лабораторного осциллографа */
+.retro-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  outline: none;
+  cursor: pointer;
+}
+
+.retro-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 18px;
+  background: var(--green-primary);
+  border: 1px solid var(--bg-main);
+  box-shadow: var(--glow-xs);
+  cursor: pointer;
+}
+
+.retro-range::-moz-range-thumb {
+  width: 12px;
+  height: 18px;
+  border-radius: 0;
+  background: var(--green-primary);
+  border: 1px solid var(--bg-main);
+  box-shadow: var(--glow-xs);
+  cursor: pointer;
+}
+
+/* Технический разделитель */
+.tech-divider {
+  border: none;
+  border-top: 1px dashed var(--border-color);
+  margin: 12px 0;
+}
+
+/* Бейджи */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-input);
+  color: var(--green-secondary);
+}
+
+.tech-badge-active {
+  border-color: var(--green-primary);
+  color: var(--green-primary);
+  background-color: rgba(57, 255, 120, 0.09);
+}
+
+/* Основная сетка каркаса приложения */
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-workspace {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-page-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 18px;
+}
+
+.page-header-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-title {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green-primary);
+  text-shadow: var(--glow-xs);
+}
+
+.page-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}

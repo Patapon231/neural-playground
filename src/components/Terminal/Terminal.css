@@ -1,0 +1,152 @@
+.np-terminal {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-input);
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+  z-index: 15;
+}
+
+.np-terminal.is-open {
+  height: 196px;
+}
+
+.np-terminal.is-collapsed {
+  height: 36px;
+}
+
+.np-terminal-bar {
+  height: 35px;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 12px;
+  background-color: var(--bg-panel-alt);
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  user-select: none;
+}
+
+.np-terminal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.np-terminal-hint {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 10.5px;
+}
+
+.np-terminal-preview {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  color: var(--text-main);
+}
+
+.np-terminal-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.np-terminal-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.55;
+  cursor: text;
+}
+
+.np-terminal-empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.np-log-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.np-log-time {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.np-log-cat {
+  color: var(--green-secondary);
+  font-weight: 600;
+  min-width: 82px;
+  flex-shrink: 0;
+}
+
+.np-log-line.cat-КОМАНДА .np-log-cat,
+.np-log-line.cat-ОБУЧЕНИЕ .np-log-cat {
+  color: var(--green-primary);
+}
+
+.np-log-line.is-error .np-log-cat,
+.np-log-line.is-error .np-log-msg {
+  color: var(--status-error);
+}
+
+.np-log-msg {
+  color: var(--text-main);
+}
+
+.np-terminal-prompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-panel);
+}
+
+.np-prompt-prefix {
+  color: var(--green-primary);
+  font-weight: 700;
+  font-size: 12px;
+  text-shadow: var(--glow-xs);
+  user-select: none;
+}
+
+.np-prompt-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--green-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  caret-color: var(--green-primary);
+}
+
+.np-prompt-input::placeholder {
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .np-terminal-hint {
+    display: none;
+  }
+}

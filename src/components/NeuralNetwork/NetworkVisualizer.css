@@ -1,0 +1,112 @@
+.np-visualizer-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.np-vis-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.np-vis-canvas-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-main);
+}
+
+.np-vis-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.np-node-hud {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  min-width: 210px;
+  padding: 8px 10px;
+  background-color: rgba(16, 22, 16, 0.94);
+  border: 1px solid var(--green-primary);
+  box-shadow: var(--glow-sm);
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.np-node-hud-title {
+  font-weight: 700;
+  color: var(--green-primary);
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 4px;
+  margin-bottom: 5px;
+  letter-spacing: 0.05em;
+}
+
+.np-node-hud-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1.5px 0;
+  color: var(--text-muted);
+}
+
+.np-node-hud-row strong {
+  color: var(--text-main);
+}
+
+.np-vis-legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 7px 12px;
+  background-color: var(--bg-panel-alt);
+  border-top: 1px solid var(--border-color);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.np-legend-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.np-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.np-legend-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 3px;
+}
+
+.np-legend-swatch.is-pos {
+  background-color: var(--green-primary);
+  box-shadow: var(--glow-xs);
+}
+
+.np-legend-swatch.is-neg {
+  background-color: #265634;
+  border-top: 1px dashed var(--green-secondary);
+}
+
+.np-legend-swatch.is-thick {
+  height: 4px;
+  background: linear-gradient(90deg, rgba(57, 255, 120, 0.25), var(--green-primary));
+}
+
+.np-legend-probe {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green-secondary);
+}

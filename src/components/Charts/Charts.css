@@ -1,0 +1,106 @@
+.np-plot-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.np-plot-coords {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--green-primary);
+}
+
+.np-plot-canvas-wrap {
+  width: 100%;
+  background-color: var(--bg-main);
+  overflow: hidden;
+}
+
+.np-plot-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.np-plot-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 7px 12px;
+  background-color: var(--bg-panel-alt);
+  border-top: 1px solid var(--border-color);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.np-plot-leg-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.np-marker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--green-primary);
+  box-shadow: var(--glow-xs);
+  display: inline-block;
+}
+
+.np-marker-sq {
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--green-secondary);
+  background-color: var(--bg-main);
+  display: inline-block;
+}
+
+.np-marker-reg {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--green-secondary);
+  display: inline-block;
+}
+
+.np-marker-line {
+  width: 18px;
+  height: 2.5px;
+  background-color: var(--green-primary);
+  box-shadow: var(--glow-xs);
+  display: inline-block;
+}
+
+/* Recharts контейнеры аналитики */
+.np-chart-box {
+  padding: 12px 14px 8px 4px;
+  background-color: var(--bg-main);
+}
+
+.np-recharts-tooltip {
+  background-color: rgba(16, 22, 16, 0.96);
+  border: 1px solid var(--green-primary);
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  box-shadow: var(--glow-sm);
+}
+
+.np-recharts-tooltip-title {
+  color: var(--green-primary);
+  font-weight: 700;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 3px;
+}
+
+.np-recharts-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-main);
+}
